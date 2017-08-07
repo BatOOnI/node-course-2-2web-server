@@ -2,6 +2,7 @@ const express = require('express');  //zaladowanie biblioteki
 const hbs = require('hbs');
 const fs = require('fs');
 
+const port = process.env.PORT || 3000;
 var app = express();  //tworzenie aplikacji po przez wywolanie express jako funkcji
 
 hbs.registerPartials(__dirname + '/views/partials')
@@ -20,9 +21,9 @@ app.use((req, res, next) => {
 	next();
 });
 
-app.use((req, res, next) => {
-	res.render('maintenance.hbs');
-});
+// app.use((req, res, next) => {
+// 	res.render('maintenance.hbs');
+// });
 
 app.use(express.static(__dirname + '/public')); //sciezka absolutna do folderu ktory chce zaserwowac
 
@@ -57,6 +58,6 @@ app.get('/bad',(req, res) => {
 	});
 });
 
-app.listen(3000, () => { //app.listen(port,wywolanie funkcji)
-	console.log('server is up on port 3000') //odp. do cmd po odpaleniu serwera
+app.listen(port, () => { //app.listen(port,wywolanie funkcji)
+	console.log(`server is up on port ${port}`) //odp. do cmd po odpaleniu serwera
 }); // wlaczenie nasluchu dla portu 3000, odpala serwer
